@@ -4,7 +4,7 @@ body {
 }
 
 hr {
-    width: 500px;
+    width: 800 px;
 }
 
 #errors {
@@ -70,9 +70,13 @@ hr {
 }
 
 .horizontal-line {
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid black;
 }
 
 .vertical-line {
-    border-right: 1px solid black;
+    border-right: 2px solid black;
+}
+
+.disable-number{
+    background-color: darkred;
 }

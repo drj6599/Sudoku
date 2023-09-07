@@ -28,6 +28,18 @@ var solution = [
     "812945763"
 ]
 
+var frequency = [0,9,9,9,9,9,9,9,9,9];
+
+for(let i = 0 ; i < 9 ; i++)
+{
+    for(let j = 0 ; j < 9 ; j++)
+    {
+        let digit = parseInt(board[i][j] - '0');
+        frequency[digit]--;
+    }
+}
+console.log(frequency);
+
 window.onload = function() {
     setGame();
 }
@@ -98,11 +110,23 @@ function selectTile() {
         if(solution[r][c] == numSelected.id)
         {
             this.innerText = numSelected.id;
+            frequency[parseInt(numSelected.id)]--;
         }
         else
         {
             errors += 1;
+            //frequency[parseInt(numSelected.id)]++;
             document.getElementById("errors").innerText = errors;
+            //this.innerText = numSelected.id;
         }
     }
+
+    if(frequency[parseInt(numSelected.id)] == 0)
+    {
+        console.log("disabled digit selection of " + numSelected.id);
+        numSelected.removeEventListener("click",selectNumber);
+        numSelected.classList.add("disable-number");
+    }
+
+    console.log(frequency);
 }
