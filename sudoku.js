@@ -29,19 +29,26 @@ var solution = [
 ]
 
 var frequency = [0,9,9,9,9,9,9,9,9,9];
+var totalFrequency = 81;
 
 for(let i = 0 ; i < 9 ; i++)
 {
     for(let j = 0 ; j < 9 ; j++)
     {
-        let digit = parseInt(board[i][j] - '0');
-        frequency[digit]--;
+        if(board[i][j] != '-')
+        {
+            let digit = parseInt(board[i][j] - '0');
+            frequency[digit]--;
+            totalFrequency--;
+        }
     }
 }
 console.log(frequency);
+console.log(totalFrequency);
 
 window.onload = function() {
     setGame();
+    document.getElementById("Congratulations").style.display = "none";
 }
 
 function setGame() {
@@ -111,6 +118,7 @@ function selectTile() {
         {
             this.innerText = numSelected.id;
             frequency[parseInt(numSelected.id)]--;
+            totalFrequency--;
         }
         else
         {
@@ -129,4 +137,11 @@ function selectTile() {
     }
 
     console.log(frequency);
+    console.log(totalFrequency);
+    if(totalFrequency == 0)
+    {
+        document.getElementById("game").style.display = "none";
+        document.getElementById("Congratulations").style.display = "";
+        document.getElementById("finalErrors").innerText = errors;
+    }
 }
